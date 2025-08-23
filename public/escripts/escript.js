@@ -83,6 +83,10 @@ document.querySelector('.install-button').addEventListener('click', function() {
                 // Replace with the actual URL for inqr
                 url = 'https://inqr.inled.es';
                 break;
+            case 'inpdf':
+                // Replace with the actual URL for inqr
+                url = 'https://inpdf.inled.es';
+                break;
             case 'start':
                 // Replace with the actual URL for Start
                 url = 'https://start.inled.es/';

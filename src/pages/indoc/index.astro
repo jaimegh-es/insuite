@@ -1,164 +1,225 @@
 ---
-import Sidebar from "../../components/sidebar.astro"
-import Layout from "../../layouts/LayoutEditors.astro"
+import Sidebar from "../../components/sidebar.astro";
+import Layout from "../../layouts/LayoutEditors.astro";
 ---
+
 <Layout>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>InDoc - Edita texto con IA gratuitamente</title>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
+            <title>InDoc - Edita texto con IA gratuitamente</title>
 
-    <meta name="description" content="Editor de texto con IA integrada gratuito, privado y open-source" />
-    
-    <!-- Quill CSS -->
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    
-    <!-- El CSS de la página -->
-    <link rel="stylesheet" href="/src/pages/indoc/main.css">
+            <meta
+                name="description"
+                content="Editor de texto con IA integrada gratuito, privado y open-source"
+            />
 
-    <link rel="stylesheet" href="/public/css/sidebar.css">
+            <!-- Quill CSS -->
+            <link
+                href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+                rel="stylesheet"
+            />
 
-    
+            <!-- El CSS de la página -->
+            <link rel="stylesheet" href="/src/pages/indoc/main.css" />
 
+            <link rel="stylesheet" href="/public/css/sidebar.css" />
 
-    
-    <!-- Font Awesome para iconos -->
-     <!-- No usamos el kit de fontawesome por que es un lío-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+            <!-- Font Awesome para iconos -->
+            <!-- No usamos el kit de fontawesome por que es un lío-->
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </head>
 
-<body>
-
-
-
-
-    <div class="app-container">
-        <!-- Header con toolbar estilo Microsoft -->
-        <header class="header">
-            <div class="header-top">
-                <div class="app-title">
-                    <img src="https://hosted.inled.es/INDOC.png" width="auto" height="30px">
-                    InDoc | Editor de texto gratuito con IA
-                </div>
-            </div>
-
-            <Sidebar />
-            
-            <!-- Toolbar principal -->
-            <div class="toolbar">
-                <div class="toolbar-section">
-                    <button class="toolbar-btn" id="new-doc" title="Nuevo documento">
-                        <i class="fas fa-file"></i>
-                        <span>Nuevo</span>
-                    </button>
-                    <button class="toolbar-btn" id="open-doc" title="Abrir documento">
-                        <i class="fas fa-folder-open"></i>
-                        <span>Abrir</span>
-                    </button>
-                    <button class="toolbar-btn" id="save-doc" title="Guardar en navegador">
-                        <i class="fas fa-save"></i>
-                        <span>Guardar</span>
-                    </button>
-                    <!--Guarda en la memoria del navegador-->
-                </div>
-                
-                <div class="toolbar-separator"></div>
-
-                <!-- Botones de exportación -->
-                <div class="toolbar-section">
-                    <button class="toolbar-btn" id="export-pdf" title="Exportar a PDF">
-                        <i class="fas fa-file-pdf"></i>
-                        <span>PDF</span>
-                    </button>
-                    <button class="toolbar-btn" id="export-txt" title="Exportar a TXT">
-                        <i class="fas fa-file-alt"></i>
-                        <span>TXT</span>
-                    </button>
-                </div>
-                
-                <div class="toolbar-separator"></div>
-                
-                <!--Aquí está la IA de Inled. A lo mejor debería hacer más grande el icono pero se me descoloca todo-->
-                <div class="toolbar-section">
-                    <button class="toolbar-btn" id="toggle-chat" title="Hablar con la inteligencia artificial de Inled.">
-                        <img src="inledai.svg" alt="logo Inled AI" class="ailogo">
-                        <span>Chat IA</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <!-- Contenido principal -->
-        <main class="main-content">
-            <!-- Panel del editor -->
-            <div class="editor-panel">
-                <div class="editor-toolbar" id="toolbar"></div>
-                <div class="editor-container">
-                    <div id="editor"></div>
-                </div>
-            </div>
-
-            <!-- Panel del chat (inicialmente oculto) -->
-            <div class="chat-panel" id="chat-panel">
-                <div class="chat-header">
-                    <h3><img src="inledai.svg" alt="logo Inled AI" class="ailogo"> Inled AI</h3>
-                    <button class="chat-close" id="chat-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="chat-status" id="chat-status">
-                    <div class="loading-spinner"></div>
-                    <span>Cargando modelo de IA...</span>
-                </div>
-                
-                <div class="chat-messages" id="chat-messages"></div>
-                
-                <div class="chat-input-container">
-                    <textarea 
-                        id="chat-input" 
-                        placeholder="Habla aquí con la IA..."
-                        rows="3"
-                        disabled
-                    ></textarea>
-                    <div class="chat-actions">
-                        <button id="send-message" class="chat-btn primary" disabled>
-                            <i class="fas fa-paper-plane"></i>
-                            Enviar
-                        </button>
-                        <button id="insert-response" class="chat-btn secondary" disabled>
-                            <i class="fas fa-plus"></i>
-                            Insertar
-                        </button>
-                        <button id="copy-response" class="chat-btn secondary" disabled>
-                            <i class="fas fa-copy"></i>
-                            Copiar
-                        </button>
+        <body>
+            <div class="app-container">
+                <!-- Header con toolbar estilo Microsoft -->
+                <header class="header">
+                    <div class="header-top">
+                        <div class="app-title">
+                            <img
+                                src="https://hosted.inled.es/INDOC.png"
+                                width="auto"
+                                height="30px"
+                            />
+                            InDoc | Editor de texto gratuito con IA
+                        </div>
                     </div>
-                </div>
+
+                    <Sidebar />
+
+                    <!-- Toolbar principal -->
+                    <div class="toolbar">
+                        <div class="toolbar-section">
+                            <button
+                                class="toolbar-btn"
+                                id="new-doc"
+                                title="Nuevo documento"
+                            >
+                                <i class="fas fa-file"></i>
+                                <span>Nuevo</span>
+                            </button>
+                            <button
+                                class="toolbar-btn"
+                                id="open-doc"
+                                title="Abrir documento"
+                            >
+                                <i class="fas fa-folder-open"></i>
+                                <span>Abrir</span>
+                            </button>
+                            <button
+                                class="toolbar-btn"
+                                id="save-doc"
+                                title="Guardar en navegador"
+                            >
+                                <i class="fas fa-save"></i>
+                                <span>Guardar</span>
+                            </button>
+                            <!--Guarda en la memoria del navegador-->
+                        </div>
+
+                        <div class="toolbar-separator"></div>
+
+                        <!-- Botones de exportación -->
+                        <div class="toolbar-section">
+                            <button
+                                class="toolbar-btn"
+                                id="export-pdf"
+                                title="Exportar a PDF"
+                            >
+                                <i class="fas fa-file-pdf"></i>
+                                <span>PDF</span>
+                            </button>
+                            <button
+                                class="toolbar-btn"
+                                id="export-txt"
+                                title="Exportar a TXT"
+                            >
+                                <i class="fas fa-file-alt"></i>
+                                <span>TXT</span>
+                            </button>
+                        </div>
+
+                        <div class="toolbar-separator"></div>
+
+                        <!--Aquí está la IA de Inled. A lo mejor debería hacer más grande el icono pero se me descoloca todo-->
+                        <div class="toolbar-section">
+                            <button
+                                class="toolbar-btn"
+                                id="toggle-chat"
+                                title="Hablar con la inteligencia artificial de Inled."
+                            >
+                                <img
+                                    src="inledai.svg"
+                                    alt="logo Inled AI"
+                                    class="ailogo"
+                                />
+                                <span>Chat IA</span>
+                            </button>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Contenido principal -->
+                <main class="main-content">
+                    <!-- Panel del editor -->
+                    <div class="editor-panel">
+                        <div class="editor-toolbar" id="toolbar"></div>
+                        <div class="editor-container">
+                            <div id="editor"></div>
+                        </div>
+                    </div>
+
+                    <!-- Panel del chat (inicialmente oculto) -->
+                    <div class="chat-panel" id="chat-panel">
+                        <div class="chat-header">
+                            <h3>
+                                <img
+                                    src="inledai.svg"
+                                    alt="logo Inled AI"
+                                    class="ailogo"
+                                /> Inled AI
+                            </h3>
+                            <button class="chat-close" id="chat-close">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+
+                        <div class="chat-status" id="chat-status">
+                            <div class="loading-spinner"></div>
+                            <span>Cargando modelo de IA...</span>
+                        </div>
+
+                        <div class="chat-messages" id="chat-messages"></div>
+
+                        <div class="chat-input-container">
+                            <textarea
+                                id="chat-input"
+                                placeholder="Habla aquí con la IA..."
+                                rows="3"
+                                disabled></textarea>
+                            <div class="chat-actions">
+                                <button
+                                    id="send-message"
+                                    class="chat-btn primary"
+                                    disabled
+                                >
+                                    <i class="fas fa-paper-plane"></i>
+                                    Enviar
+                                </button>
+                                <button
+                                    id="insert-response"
+                                    class="chat-btn secondary"
+                                    disabled
+                                >
+                                    <i class="fas fa-plus"></i>
+                                    Insertar
+                                </button>
+                                <button
+                                    id="copy-response"
+                                    class="chat-btn secondary"
+                                    disabled
+                                >
+                                    <i class="fas fa-copy"></i>
+                                    Copiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
             </div>
-        </main>
-    </div>
 
-    <!-- Importaciones de scripts -->
+            <!-- Importaciones de scripts -->
 
-    <!--Quill, el editor en el que se basa todo el percal-->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+            <!--Quill, el editor en el que se basa todo el percal-->
+            <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
-    <!--JSPDF-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+            <!--JSPDF-->
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+            ></script>
 
-    <!-- Html2Canvas para transformar el html en pdf-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+            <!-- Html2Canvas para transformar el html en pdf-->
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            ></script>
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+            ></script>
 
-    <!-- Marked para renderizar el markdown que nos genera nuestra IA -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+            <!-- Marked para renderizar el markdown que nos genera nuestra IA -->
+            <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"
+            ></script>
 
-    <!--El módulo que le da la funcionalidad a todo esto-->
-    <script type="module" src="/src/pages/indoc/main.js"></script>
-</body>
-</html>
+            <!--El módulo que le da la funcionalidad a todo esto-->
+            <script type="module" src="/src/pages/indoc/_main.js"></script>
+        </body>
+    </html>
 </Layout>

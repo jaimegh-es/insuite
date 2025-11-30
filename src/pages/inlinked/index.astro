@@ -27,10 +27,14 @@ import Layout from "../../layouts/LayoutEditors.astro";
             />
             <meta property="og:type" content="website" />
 
-            <link rel="stylesheet" href="/src/pages/inlinked/css/styles.new.css" />
-            <link rel="stylesheet" href="/src/pages/inlinked/ai.css">º
+            <link
+                rel="stylesheet"
+                href="/src/pages/inlinked/css/styles.new.css"
+            />
+            <link rel="stylesheet" href="/src/pages/inlinked/ai.css" />º
 
-            <script src="/src/pages/inlinked/js/new.ai.js" type="module"></script>
+            <script src="/src/pages/inlinked/js/_new.ai.js" type="module"
+            ></script>
             <style>
                 html,
                 body {
@@ -46,10 +50,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
             </style>
         </head>
         <Sidebar />
-        <body >
-            
-
-
+        <body>
             <div class="container">
                 <main class="main">
                     <div class="format-buttons">
@@ -116,20 +117,32 @@ import Layout from "../../layouts/LayoutEditors.astro";
 
                     <div class="info-section">
                         <h3>¿Qué es InLinked?</h3>
-                        <p>Como habrás podido percibir es un editor de texto para LinkedIn <strong>ilimitado</strong> y <strong>gratuito</strong>.</p>
+                        <p>
+                            Como habrás podido percibir es un editor de texto
+                            para LinkedIn <strong>ilimitado</strong> y <strong
+                                >gratuito</strong
+                            >.
+                        </p>
 
                         <h3>¿Como lo puedo utilizar?</h3>
                         <ul>
                             <li>Escribe tu texto en el editor</li>
-                            <li>Selecciona el texto que quieres formatear y selecciona un tipo de formato</li>
+                            <li>
+                                Selecciona el texto que quieres formatear y
+                                selecciona un tipo de formato
+                            </li>
                             <li>Copia el resultado y pégalo en LinkedIn</li>
                             <li>Los formatos no se pueden combinar</li>
                         </ul>
 
                         <h3>¿Tienes algún error?</h3>
-                        <p>En ese caso te rogamos que nos escribas (<a href="https://inled.es/contacto">contacto</a>) y puedes utilizar el antiguo editor (aún que ya lo tenemos un pelín desmantelado) <a href="/inlinked/old">aquí</a></p>
-
-                        
+                        <p>
+                            En ese caso te rogamos que nos escribas (<a
+                                href="https://inled.es/contacto">contacto</a
+                            >) y puedes utilizar el antiguo editor (aún que ya
+                            lo tenemos un pelín desmantelado) <a
+                                href="/inlinked/old">aquí</a>
+                        </p>
                     </div>
                 </main>
                 <div class="chat-panel" id="chat-panel">
@@ -193,7 +206,8 @@ import Layout from "../../layouts/LayoutEditors.astro";
                 </footer>
             </div>
 
-            <script src="/src/pages/inlinked/js/new.script.js" type="module"></script>
+            <script src="/src/pages/inlinked/js/_new.script.js" type="module"
+            ></script>
         </body>
     </html>
 </Layout>

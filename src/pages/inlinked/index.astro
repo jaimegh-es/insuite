@@ -27,13 +27,10 @@ import Layout from "../../layouts/LayoutEditors.astro";
             />
             <meta property="og:type" content="website" />
 
-            <link
-                rel="stylesheet"
-                href="/src/pages/inlinked/css/styles.new.css"
-            />
-            <link rel="stylesheet" href="/src/pages/inlinked/ai.css" />º
+            <link rel="stylesheet" href="/inlinked/css/styles.new.css" />
+            <link rel="stylesheet" href="/inlinked/ai.css" />
 
-            <script src="/src/pages/inlinked/js/_new.ai.js" type="module"
+            <script is:inline src="/inlinked/js/_new.ai.js" type="module"
             ></script>
             <style>
                 html,
@@ -141,7 +138,8 @@ import Layout from "../../layouts/LayoutEditors.astro";
                                 href="https://inled.es/contacto">contacto</a
                             >) y puedes utilizar el antiguo editor (aún que ya
                             lo tenemos un pelín desmantelado) <a
-                                href="/inlinked/old">aquí</a>
+                                href="/inlinked/old">aquí</a
+                            >
                         </p>
                     </div>
                 </main>
@@ -206,7 +204,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
                 </footer>
             </div>
 
-            <script src="/src/pages/inlinked/js/_new.script.js" type="module"
+            <script is:inline src="/inlinked/js/_new.script.js" type="module"
             ></script>
         </body>
     </html>

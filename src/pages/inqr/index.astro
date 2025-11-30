@@ -7,11 +7,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
   <html lang="es">
     <head>
       <meta charset="UTF-8" />
-      <link
-        rel="shortcut icon"
-        type="image/x-icon"
-        href="/src/pages/inqr/favicon.ico"
-      />
+      <link rel="shortcut icon" type="image/x-icon" href="/inqr/favicon.ico" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>InQR | Genera QR gratis y privado</title>
       <meta
@@ -19,7 +15,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
         content="Generador de códigos QR y códigos de barras moderno y fácil de usar"
       />
       <meta name="author" content="Inled Group" />
-      <link rel="stylesheet" href="/src/pages/inqr/estilos.css" />
+      <link rel="stylesheet" href="/inqr/estilos.css" />
 
       <script
         src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/js/all.min.js"
@@ -39,7 +35,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
 
         <!-- Header -->
         <div class="header">
-          <img src="/src/pages/inqr/inqr.png" class="qr-icon" alt="INQR logo" />
+          <img src="/inqr/inqr.png" class="qr-icon" alt="INQR logo" />
 
           <h1 class="main-title">InQR</h1>
           <p class="subtitle">Genera códigos QR</p>
@@ -217,6 +213,6 @@ import Layout from "../../layouts/LayoutEditors.astro";
         <p id="toastMessage"></p>
       </div>
     </body>
-    <script src="/src/pages/inqr/_funcionalidad.js"></script>
+    <script is:inline src="/inqr/_funcionalidad.js"></script>
   </html>
 </Layout>

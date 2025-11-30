@@ -25,9 +25,9 @@ import Layout from "../../layouts/LayoutEditors.astro";
             />
 
             <!-- El CSS de la página -->
-            <link rel="stylesheet" href="/src/pages/indoc/main.css" />
+            <link rel="stylesheet" href="/indoc/main.css" />
 
-            <link rel="stylesheet" href="/public/css/sidebar.css" />
+            <link rel="stylesheet" href="/css/sidebar.css" />
 
             <!-- Font Awesome para iconos -->
             <!-- No usamos el kit de fontawesome por que es un lío-->
@@ -219,7 +219,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
             ></script>
 
             <!--El módulo que le da la funcionalidad a todo esto-->
-            <script type="module" src="/src/pages/indoc/_main.js"></script>
+            <script is:inline type="module" src="/indoc/_main.js"></script>
         </body>
     </html>
 </Layout>

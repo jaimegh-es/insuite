@@ -15,14 +15,16 @@ import Layout from "../../layouts/LayoutEditors.astro";
         name="description"
         content="Formateador de texto para LinkedIN 100% gratuito, sin login ni costes."
       />
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+      <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
       <meta name="author" content="Inled Group" />
-      <script src="/src/pages/inlinked/js/_toUnicodeVariant.min.js" module
-      ></script>
+      <script
+        is:inline
+        src="/inlinked/js/_toUnicodeVariant.min.js"
+        type="module"></script>
       <title>InLinked</title>
       <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+      <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
       <!-- Custom Google font-->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,9 +43,9 @@ import Layout from "../../layouts/LayoutEditors.astro";
         rel="stylesheet"
       />
 
-      <link href="/src/pages/inlinked/estilos.css" rel="stylesheet" />
+      <link href="/inlinked/estilos.css" rel="stylesheet" />
 
-      <link rel="stylesheet" href="/src/pages/inlinked/ai.css" />
+      <link rel="stylesheet" href="/inlinked/ai.css" />
 
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -190,7 +192,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
       }
     </script>
     <div class="header">
-      <img src="INLINKED.png" style="width: auto; height: 25px;" />
+      <img src="/inlinked/INLINKED.png" style="width: auto; height: 25px;" />
       <h1>InLinked</h1>
       <div class="header-info">
         <span>Formatea texto para LinkedIN</span>
@@ -519,5 +521,5 @@ import Layout from "../../layouts/LayoutEditors.astro";
     </div>
     ¡¡
   </html>
-  <script src="/src/pages/inlinked/js/_ai.js" module></script>
+  <script is:inline src="/inlinked/js/_ai.js" type="module"></script>
 </Layout>

@@ -12,11 +12,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
                 content="width=device-width, initial-scale=1.0"
             />
             <title>InMD | Free & Open-Source Visual Markdown Editor</title>
-            <link
-                rel="icon"
-                type="image/x-icon"
-                href="/src/pages/inmd/favicon.ico"
-            />
+            <link rel="icon" type="image/x-icon" href="/inmd/favicon.ico" />
             <link rel="stylesheet" href="/src/pages/inmd/editor.css" />
             <script
                 src="https://cdn.jsdelivr.net/npm/markdown-it@14.0.0/dist/markdown-it.min.js"
@@ -39,8 +35,8 @@ import Layout from "../../layouts/LayoutEditors.astro";
             <!--La barra lateral de InSuite-->
 
             <!--Los estilos para la IA-->
-            <link rel="stylesheet" href="/src/pages/inmd/ai.css" />
-            <link rel="stylesheet" href="/src/pages/inmd/aipowered.css" />
+            <link rel="stylesheet" href="/inmd/ai.css" />
+            <link rel="stylesheet" href="/inmd/aipowered.css" />
 
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link
@@ -143,7 +139,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
                             title="Hablar con la inteligencia artificial de Inled."
                         >
                             <img
-                                src="https://hosted.inled.es/inledai.svg"
+                                src="/inmd/inledai.svg"
                                 alt="logo Inled AI"
                                 class="ailogo"
                             />
@@ -187,7 +183,7 @@ import Layout from "../../layouts/LayoutEditors.astro";
                 <div class="chat-header">
                     <h3>
                         <img
-                            src="inledai.svg"
+                            src="/inmd/inledai.svg"
                             alt="logo Inled AI"
                             class="ailogo"
                         /> Inled AI
@@ -253,10 +249,10 @@ import Layout from "../../layouts/LayoutEditors.astro";
         <!--Scripts de funcionalidad-->
 
         <!--El editor-->
-        <script src="/src/pages/inmd/_editor.js"></script>
+        <script is:inline src="/inmd/_editor.js"></script>
 
         <!--La IA-->
-        <script src="/src/pages/inmd/_ai.js"></script>
+        <script is:inline src="/inmd/_ai.js"></script>
 
         <!-- Marked para renderizar el markdown que nos genera nuestra IA -->
         <script

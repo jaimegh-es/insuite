@@ -1,0 +1,184 @@
+---
+import Sidebar from "../../components/sidebar.astro";
+import Layout from "../../layouts/LayoutEditors.astro";
+---
+
+<Layout>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InMD | Free & Open-Source Visual Markdown Editor</title>
+    <link rel="icon" type="image/x-icon" href="/src/pages/inmd/favicon.ico">
+    <link rel="stylesheet" href="/src/pages/inmd/editor.css">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it@14.0.0/dist/markdown-it.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="author" content="Inled Group">
+    <meta name="description" content="InMD es un editor visual de Markdown gratuito y de código abierto. Listo para usar sin pagar y sin login">
+
+    <!--Importaciones importantes ;)-->
+
+    <!--La barra lateral de InSuite-->
+
+    <!--Los estilos para la IA-->
+    <link rel="stylesheet" href="/src/pages/inmd/ai.css">
+    <link rel="stylesheet" href="/src/pages/inmd/aipowered.css">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!--Barra lateral de la InSuite-->
+        <Sidebar/>
+
+    <div class="editor-container">
+        <div class="header-content">
+        <img src="https://hosted.inled.es/inMD.png" alt="Logotipo inMD" class="logo">
+        <h1>InMD</h1>
+        </div>
+
+        <!-- Barra de herramientas -->
+        <div class="toolbar" id="toolbar">
+            <div class="toolbar-group">
+                <button id="bold" title="Negrita (Ctrl+B)">
+                    <strong>B</strong>
+                </button>
+                <button id="italic" title="Cursiva (Ctrl+I)">
+                    <em>I</em>
+                </button>
+                <button id="underline" title="Subrayado">
+                    <u>U</u>
+                </button>
+                <button id="strikethrough" title="Tachado">
+                    <s>S</s>
+                </button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="h1" title="Título 1">H1</button>
+                <button id="h2" title="Título 2">H2</button>
+                <button id="h3" title="Título 3">H3</button>
+                <button id="h4" title="Título 4">H4</button>
+                <button id="h5" title="Título 5">H5</button>
+                <button id="h6" title="Título 6">H6</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="ul" title="Lista sin orden"><i class="fa-solid fa-list-ul"></i></button>
+                <button id="ol" title="Lista ordenada"><i class="fa-solid fa-list-ol"></i></button>
+                <button id="checkbox" title="Lista de tareas"><i class="fa-solid fa-list-check"></i></button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="link" title="Enlace"><i class="fa-solid fa-link"></i></button>
+                <button id="image" title="Imagen"><i class="fa-solid fa-image"></i></button>
+                <button id="code" title="Código inline">&lt;/&gt;</button>
+                <button id="codeblock" title="Bloque de código">{ }</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="quote" title="Cita"><i class="fa-solid fa-quote-right"></i></button>
+                <button id="table" title="Tabla"><i class="fa-solid fa-table"></i></button>
+                <button id="hr" title="Línea horizontal">―――</button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button id="undo" title="Deshacer (Ctrl+Z)">↶</button>
+                <button id="redo" title="Rehacer (Ctrl+Y)">↷</button>
+            </div>
+
+            <!--Aquí está la IA de Inled. A lo mejor debería hacer más grande el icono pero se me descoloca todo-->
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="toggle-chat" title="Hablar con la inteligencia artificial de Inled.">
+                        <img src="https://hosted.inled.es/inledai.svg" alt="logo Inled AI" class="ailogo">
+                        <span>Chat IA</span>
+                    </button>
+                </div>
+            </div>
+        
+        <!-- Área principal -->
+        <div class="editor-main">
+            <!-- Editor visual -->
+            <div class="editor-panel">
+                <h3>Editor Visual</h3>
+                <div id="visual-editor" contenteditable="true"></div>
+            </div>
+            
+            <!-- Código Markdown -->
+            <div class="markdown-panel">
+                <h3>Código Markdown</h3>
+                <textarea id="markdown-output" readonly></textarea>
+            </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="actions">
+            <button id="copy-markdown">Copiar Markdown</button>
+            <button id="copy-html">Copiar HTML</button>
+            <button id="download-md">Descargar .md</button>
+            <button id="load-file">Cargar archivo</button>
+            <input type="file" id="file-input" accept=".md,.txt" style="display: none;">
+        </div>
+    </div>
+
+    <!-- Panel del chat (ahora fuera del editor-container, como barra lateral) -->
+    <div class="chat-panel" id="chat-panel">
+        <div class="chat-header">
+            <h3><img src="inledai.svg" alt="logo Inled AI" class="ailogo"> Inled AI</h3>
+            <button class="chat-close" id="chat-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chat-status" id="chat-status">
+            <div class="loading-spinner"></div>
+            <span>Cargando modelo de IA...</span>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input-container">
+            <textarea 
+                id="chat-input" 
+                placeholder="Habla aquí con la IA..."
+                rows="3"
+                disabled
+            ></textarea>
+            <div class="chat-actions">
+                <button id="send-message" class="chat-btn primary" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar
+                </button>
+                <button id="insert-response" class="chat-btn secondary" disabled>
+                    <i class="fas fa-plus"></i>
+                    Insertar
+                </button>
+                <button id="copy-response" class="chat-btn secondary" disabled>
+                    <i class="fas fa-copy"></i>
+                    Copiar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="floating-card">
+        <img src="https://inled.es/upload/inledai.svg" alt="Inled AI Icon" class="floating-card-icon">
+        <a href="https://ai.inled.es" class="floating-card-text" style="text-decoration: none;">Funciona gracias a Inled AI</a>
+    </div>
+    </body>
+    
+    <!--Scripts de funcionalidad-->
+
+    <!--El editor-->
+    <script src="/src/pages/inmd/editor.js"></script>
+
+    <!--La IA-->
+    <script src="/src/pages/inmd/ai.js"></script>
+
+
+    <!-- Marked para renderizar el markdown que nos genera nuestra IA -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+
+
+</Layout>

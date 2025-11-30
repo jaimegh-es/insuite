@@ -1,0 +1,199 @@
+---
+import Sidebar from "../../components/sidebar.astro";
+import Layout from "../../layouts/LayoutEditors.astro";
+---
+
+<Layout>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
+            <title>Inlinked | Formateador de texto para LinkedIN</title>
+            <meta
+                name="description"
+                content="Formatea texto para LinkedIN con IA"
+            />
+
+            <meta
+                property="og:title"
+                content="Inlinked | Formateador de texto para LinkedIN"
+            />
+            <meta
+                property="og:description"
+                content="Formatea texto para LinkedIN con IA"
+            />
+            <meta property="og:type" content="website" />
+
+            <link rel="stylesheet" href="/src/pages/inlinked/css/styles.new.css" />
+            <link rel="stylesheet" href="/src/pages/inlinked/ai.css">º
+
+            <script src="/src/pages/inlinked/js/new.ai.js" type="module"></script>
+            <style>
+                html,
+                body {
+                    height: 120vh;
+                    margin: 0;
+                    padding: 0;
+                    overflow-y: auto;
+                }
+                .container {
+                    min-height: 100vh;
+                    overflow: auto;
+                }
+            </style>
+        </head>
+        <Sidebar />
+        <body >
+            
+
+
+            <div class="container">
+                <main class="main">
+                    <div class="format-buttons">
+                        <button
+                            id="normalBtn"
+                            class="new-format-btn active"
+                            data-format="normal"
+                        >
+                            Normal
+                        </button>
+                        <button
+                            id="boldBtn"
+                            class="new-format-btn"
+                            data-format="bold"
+                        >
+                            𝗕𝗼𝗹𝗱
+                        </button>
+                        <button
+                            id="italicBtn"
+                            class="new-format-btn"
+                            data-format="italic"
+                        >
+                            𝘐𝘵𝘢𝘭𝘪𝘤
+                        </button>
+                        <button
+                            id="boldItalicBtn"
+                            class="new-format-btn"
+                            data-format="bolditalic"
+                        >
+                            𝙱𝚘𝚕𝚝 𝙸𝚝𝚊𝚕𝚒𝚌
+                        </button>
+                    </div>
+
+                    <div class="editor-section">
+                        <div class="editor-header">
+                            <label class="label"
+                                >Escribe y formatea tu texto:</label
+                            >
+                            <button id="copyBtn" class="copy-btn">
+                                📋 Copiar
+                            </button>
+                            <!--Aquí está la IA de Inled. A lo mejor debería hacer más grande el icono pero se me descoloca todo-->
+                            <button
+                                class="new-format-btn"
+                                id="toggle-chat"
+                                title="Hablar con la inteligencia artificial de Inled."
+                            >
+                                <img
+                                    src="https://hosted.inled.es/inledai.svg"
+                                    alt="logo Inled AI"
+                                    class="ailogo"
+                                />
+                                <span>Chat IA</span>
+                            </button>
+                        </div>
+                        <div
+                            id="textEditor"
+                            class="text-editor"
+                            contenteditable="true"
+                            data-placeholder="Escribe aquí y selecciona el formato para cada parte del texto..."
+                        >
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <h3>¿Qué es InLinked?</h3>
+                        <p>Como habrás podido percibir es un editor de texto para LinkedIn <strong>ilimitado</strong> y <strong>gratuito</strong>.</p>
+
+                        <h3>¿Como lo puedo utilizar?</h3>
+                        <ul>
+                            <li>Escribe tu texto en el editor</li>
+                            <li>Selecciona el texto que quieres formatear y selecciona un tipo de formato</li>
+                            <li>Copia el resultado y pégalo en LinkedIn</li>
+                            <li>Los formatos no se pueden combinar</li>
+                        </ul>
+
+                        <h3>¿Tienes algún error?</h3>
+                        <p>En ese caso te rogamos que nos escribas (<a href="https://inled.es/contacto">contacto</a>) y puedes utilizar el antiguo editor (aún que ya lo tenemos un pelín desmantelado) <a href="/inlinked/old">aquí</a></p>
+
+                        
+                    </div>
+                </main>
+                <div class="chat-panel" id="chat-panel">
+                    <div class="chat-header">
+                        <h3>
+                            <img
+                                src="https://hosted.inled.es/inledai.svg"
+                                alt="logo Inled AI"
+                                class="ailogo"
+                            /> Inled AI
+                        </h3>
+                        <button
+                            class="chat-close"
+                            id="chat-close"
+                            style="color: black;"
+                        >
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="chat-status" id="chat-status">
+                        <div class="loading-spinner"></div>
+                        <span>Cargando modelo de IA...</span>
+                    </div>
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-input-container">
+                        <textarea
+                            id="chat-input"
+                            placeholder="Habla aquí con la IA..."
+                            rows="3"
+                            disabled></textarea>
+                        <div class="chat-actions">
+                            <button
+                                id="send-message"
+                                class="chat-btn primary"
+                                disabled
+                            >
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar
+                            </button>
+                            <button
+                                id="insert-response"
+                                class="chat-btn secondary"
+                                disabled
+                            >
+                                <i class="fas fa-plus"></i>
+                                Insertar
+                            </button>
+                            <button
+                                id="copy-response"
+                                class="chat-btn secondary"
+                                disabled
+                            >
+                                <i class="fas fa-copy"></i>
+                                Copiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <p>Inled Group 2025. Licenciado bajo GNU GPLv3.0</p>
+                </footer>
+            </div>
+
+            <script src="/src/pages/inlinked/js/new.script.js" type="module"></script>
+        </body>
+    </html>
+</Layout>

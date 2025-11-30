@@ -65,71 +65,39 @@ document.querySelector('.install-button').addEventListener('click', function() {
         switch (appName) {
             case 'MDPDF':
                 // Replace with the actual URL for MDPDF (e.g., a download link or web app URL)
-                url = 'https://mdpdf.inled.es';
+                url = '/mdpdf';
                 break;
             case 'inlinked':
                 // Replace with the actual URL for inLinked web application
-                url = 'https://inlinked.inled.es/';
+                url = '/inlinked';
                 break;
             case 'inmd':
                 // Replace with the actual URL for inMD
-                url = 'https://inmd.inled.es';
+                url = '/inmd';
                 break;
             case 'indoc':
                 // Replace with the actual URL for inDOC
-                url = 'https://indoc.inled.es';
+                url = '/indoc';
                 break;
             case 'inqr':
                 // Replace with the actual URL for inqr
-                url = 'https://inqr.inled.es';
+                url = '/inqr';
                 break;
             case 'inpdf':
                 // Replace with the actual URL for inqr
                 url = 'https://inpdf.inled.es';
                 break;
-            case 'start':
+            case 'devreka':
                 // Replace with the actual URL for Start
-                url = 'https://start.inled.es/';
+                url = 'https://devreka.inled.es/';
                 break;
-            case 'somnibox':
+            case 'glassy':
                 // Replace with the actual URL for Start Omnibox
-                url = 'https://new.inled.es/startomnibox/'; // Example for a browser extension
+                url = 'https://glassy.inled.es/'; // Example for a browser extension
                 break;
-            case 'sntp':
-                // Replace with the actual URL for Start New Tab Page
-                url = 'https://new.inled.es/startntp/'; // Example for a browser extension
-                break;
-            case 'domaininfo':
-                // Replace with the actual URL for Domain Info
-                url = 'https://status.inled.es/ipcheck';
-                break;
-            case 'serverstatus':
-                // Replace with the actual URL for Server Status
-                url = 'https://status.inled.es/';
-                break;
-            case 'swiftinstall':
-                // Replace with the actual download URL for Swiftinstall (e.g., .deb file)
-                url = 'https://new.inled.es/swiftinstall/';
-                break;
-            case 'warpvpngui':
-                // Replace with the actual download URL for Warp VPN GUI
-                url = 'https://new.inled.es/warp/';
-                break;
-            case 'cruzcristianagnome':
-                // Replace with the actual URL for Cruz Cristiana GNOME extension/page
-                url = 'https://extensions.gnome.org/extension/8060/christian-cross-in-gnome-bar/';
-                break;
-            case 'memorywarn':
-                // Replace with the actual download URL for Memory Warn
-                url = 'https://new.inled.es/memorywarn/';
-                break;
-            case 'winerror':
-                // Replace with the actual URL for Windows Error (e.g., a fun web page or small executable)
-                url = 'https://new.inled.es/winerror/';
-                break;
-            case 'winbsod':
-                // Replace with the actual URL for Win BSOD
-                url = 'https://new.inled.es/winbsod/';
+            case 'matrixwww':
+                // Replace with the actual URL for Start Omnibox
+                url = 'https://matrix-www.inled.es/'; // Example for a browser extension
                 break;
             default:
                 alert('Error. No se encuentra el enlace al servicio. Visite inled.es', appName);

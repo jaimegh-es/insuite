@@ -1,0 +1,126 @@
+---
+import Sidebar from "../../components/sidebar.astro";
+import Layout from "../../layouts/LayoutEditors.astro";
+---
+
+<Layout>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8" />
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            />
+            <title>MDOCX| Private MD/DOCX Converter: All Processing in Your Browser, Zero Cloud Uploads</title>
+            <meta name="description" content="MDOCX is a private MD/DOCX converter that allows you to convert Markdown to DOCX and DOCX to Markdown in your browser. All processing is done locally, and no cloud uploads are required. Try it now, it's completely free!" />
+            <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+            <script
+                src="https://kit.fontawesome.com/4bf0ac964c.js"
+                crossorigin="anonymous"></script>
+
+            <link rel="stylesheet" href="/mdoxc/style.css" />
+
+            <!-- Librerías para conversión DOCX real - DEBEN cargarse primero -->
+            <script src="https://cdn.jsdelivr.net/npm/marked@4.0.10/marked.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.4/dist/pizzip.min.js"></script>
+
+            <!-- Script principal - se carga después de las librerías -->
+            <script is:inline src="/mdoxc/_script.js"></script>
+
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link
+                rel="preconnect"
+                href="https://fonts.gstatic.com"
+                crossorigin
+            />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+                rel="stylesheet"
+            />
+        </head>
+        <body>
+            <div class="container">
+                <Sidebar />
+
+                <div class="header">
+                    <img
+                        src="https://hosted.inled.es/MDOXC.png"
+                        alt="LogoMDOCX"
+                        class="logo"
+                    />
+                    <div class="header-name">
+                        <h1>MDOCX</h1>
+                    </div>
+                    <div class="header-info">
+                        <span id="conversion-mode">MD → DOCX</span>
+                    </div>
+                </div>
+
+                <div class="ribbon">
+                    <div class="ribbon-group">
+                        <label class="btn btn-upload" for="file-input">
+                            <i class="fa-solid fa-upload"></i>Subir archivo
+                            <input type="file" id="file-input" accept=".md,.docx" style="display: none;" />
+                        </label>
+                        <button class="btn btn-primary" id="btn-convert">
+                            <i class="fa-solid fa-rotate"></i>Convertir
+                        </button>
+                        <button class="btn" id="btn-download" disabled>
+                            <i class="fa-solid fa-download"></i>Descargar
+                        </button>
+                    </div>
+                    <div class="ribbon-group">
+                        <button class="btn btn-toggle" id="btn-toggle-mode">
+                            <i class="fa-solid fa-arrow-right-arrow-left"></i>Cambiar a DOCX → MD
+                        </button>
+                        <button class="btn" id="btn-clear">
+                            <i class="fa-solid fa-trash"></i>Limpiar
+                        </button>
+                    </div>
+                </div>
+
+                <div class="main-content">
+                    <div class="editor-panel">
+                        <div class="panel-header">
+                            <span>Editor</span>
+                            <span class="file-info" id="input-file-info"></span>
+                        </div>
+                        <textarea
+                            id="markdown-input"
+                            placeholder="# Mi Documento
+
+Escribe aquí tu contenido en Markdown o sube un archivo...
+
+## Características
+- Conversión MD ↔ DOCX
+- Previsualización en tiempo real
+- Edición de archivos
+- Procesamiento local (sin enviar datos a la nube)
+
+## Formato DOCX
+Genera archivos DOCX reales compatibles con:
+- Microsoft Word
+- LibreOffice Writer
+- OnlyOffice
+- Google Docs"
+                        ></textarea>
+                    </div>
+
+                    <div class="preview-panel">
+                        <div class="panel-header">
+                            <span>Previsualización</span>
+                            <span class="file-info" id="output-file-info"></span>
+                        </div>
+                        <div id="preview"></div>
+                    </div>
+                </div>
+
+                <div class="status-bar">
+                    <span id="status-message">Listo</span>
+                    <span id="word-count">0 palabras</span>
+                </div>
+            </div>
+        </body>
+    </html>
+</Layout>

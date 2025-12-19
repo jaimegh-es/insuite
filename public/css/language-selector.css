@@ -1,0 +1,103 @@
+/* Estilos para el selector de idiomas de Google Translate */
+
+/* Ocultar el banner de Google Translate */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+.skiptranslate {
+  display: inline-block !important;
+}
+
+/* Evitar que el body se desplace cuando se activa el traductor */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+#google_translate_element {
+  display: inline-block;
+}
+
+/* Ocultar el mensaje "Powered by" */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-family: 'Ubuntu', sans-serif !important;
+  color: white !important;
+  font-size: 0 !important;
+}
+
+/* Estilos del selector simple */
+.goog-te-gadget-simple {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.goog-te-gadget-simple:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Añadir icono antes del texto */
+.goog-te-gadget-simple::before {
+  content: "\f1ab";
+  font-family: "Font Awesome 6 Free" !important;
+  font-weight: 900;
+  margin-right: 6px;
+  font-size: 16px;
+  color: white;
+}
+
+/* Color del texto */
+.goog-te-gadget-simple .goog-te-menu-value {
+  color: white !important;
+}
+
+.goog-te-gadget-simple .goog-te-menu-value span {
+  color: white !important;
+}
+
+/* Ocultar el texto "Seleccione un idioma" */
+.goog-te-gadget-simple .goog-te-menu-value span:first-child {
+  display: none !important;
+}
+
+/* Ocultar el icono de Google */
+.goog-te-gadget-icon {
+  display: none !important;
+}
+
+/* Flecha del dropdown */
+.goog-te-gadget-simple .goog-te-menu-value span:last-child {
+  color: white !important;
+}
+
+/* Estilos para el menú desplegable */
+.goog-te-menu-frame {
+  max-height: 400px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 4px !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .goog-te-gadget-simple {
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .goog-te-gadget-simple::before {
+    font-size: 14px;
+    margin-right: 4px;
+  }
+}

@@ -1,0 +1,12 @@
+[debug] [2026-01-05T17:51:45.137Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-05T17:51:45.139Z] > authorizing via signed-in user (xestiona.inledgroup@gmail.com)
+[debug] [2026-01-05T17:51:45.153Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-05T17:51:45.153Z] > authorizing via signed-in user (xestiona.inledgroup@gmail.com)
+[debug] [2026-01-05T17:51:45.169Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-05T17:51:45.169Z] > authorizing via signed-in user (xestiona.inledgroup@gmail.com)
+[debug] [2026-01-05T17:51:45.170Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-05T17:51:45.170Z] > authorizing via signed-in user (xestiona.inledgroup@gmail.com)
+[debug] [2026-01-05T17:51:45.172Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-05T17:51:45.172Z] > authorizing via signed-in user (xestiona.inledgroup@gmail.com)
+[debug] [2026-01-05T17:51:45.172Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-01-05T17:51:45.172Z] > authorizing via signed-in user (xestiona.inledgroup@gmail.com)

@@ -1,3 +1,6 @@
+---
+import Sub from '../components/Sub.astro';
+---
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -60,6 +63,7 @@
     </head>
     <body>
         <slot />
+        <Sub />
         <script>
             // Este script debe ir aquí para asegurar que el DOM esté cargado
             document.getElementById('menu-toggle')?.addEventListener('click', () => {

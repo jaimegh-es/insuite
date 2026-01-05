@@ -1,8 +1,21 @@
+---
+import Sub from '../components/Sub.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Insuite Editors", description = "Herramientas de edición" } = Astro.props;
+---
+
 <!doctype html>
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="stylesheet" href="/css/sidebar.css" />
         <link rel="stylesheet" href="/css/language-selector.css" />
@@ -23,45 +36,13 @@
         />
         <link rel="sitemap" href="/sitemap.xml" />
 
-        <script type="text/javascript">
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'es',
-                    includedLanguages: 'en,es,fr,de,it,pt,zh-CN,ja,ko,ar,ru,hi',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                    autoDisplay: false
-                }, 'google_translate_element');
-
-                // Detectar idioma del navegador
-                const userLang = navigator.language || navigator.userLanguage;
-                const langCode = userLang.split('-')[0];
-
-                // Si el idioma del navegador no es español, cambiar automáticamente
-                if (langCode !== 'es') {
-                    setTimeout(() => {
-                        const selectElement = document.querySelector('.goog-te-combo');
-                        if (selectElement) {
-                            const langMap = {
-                                'en': 'en', 'fr': 'fr', 'de': 'de', 'it': 'it',
-                                'pt': 'pt', 'zh': 'zh-CN', 'ja': 'ja', 'ko': 'ko',
-                                'ar': 'ar', 'ru': 'ru', 'hi': 'hi'
-                            };
-                            const targetLang = langMap[langCode];
-                            if (targetLang) {
-                                selectElement.value = targetLang;
-                                selectElement.dispatchEvent(new Event('change'));
-                            }
-                        }
-                    }, 1000);
-                }
-            }
-        </script>
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <slot name="head" />
 
         
     </head>
     <body>
         <slot />
+        <Sub />
         <script>
             // Este script debe ir aquí para asegurar que el DOM esté cargado
             document

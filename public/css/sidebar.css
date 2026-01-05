@@ -1,4 +1,5 @@
-      .sidebar {
+.sidebar {
+            /* Desktop Layout - FIXED POSITION */
             position: fixed;
             left: 0;
             top: 0;
@@ -22,6 +23,8 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.2s;
+            text-decoration: none;
+            color: white;
         }
 
         .sidebar-item:hover {
@@ -29,7 +32,8 @@
         }
 
         .sidebar-item.active {
-            background-color: #0078d4;
+            background-color: #3B82F6;
+            border-radius: 8px;
         }
 
         .sidebar-icon {
@@ -37,76 +41,22 @@
             height: 20px;
             fill: white;
         }
-        .sidebar-item.active {
-  background-color: #3B82F6; /* A nice shade of blue */
-  border-radius: 8px; /* Optional: adds a slight rounded corner */
-}
 
-/* Optional: Add a smooth transition for a better visual effect */
-.sidebar-item {
-  transition: background-color 0.3s ease;
-}
+        /* Mobile Layout */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+                padding: 10px;
+                /* Fixed Bottom on Mobile */
+                top: auto;
+                bottom: 0;
+            }
 
-body {
-    margin-left: 2%;
-}
-
-/* Estilos para el selector de idiomas en el sidebar */
-.sidebar-language {
-    margin-top: auto;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 8px 0;
-}
-
-.sidebar-language #google_translate_element {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.sidebar-language .goog-te-gadget-simple {
-    width: 40px !important;
-    height: 40px !important;
-    padding: 0 !important;
-    justify-content: center !important;
-    min-width: 40px !important;
-    position: relative !important;
-}
-
-.sidebar-language .goog-te-gadget-simple::before {
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-    font-size: 20px !important;
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-}
-
-/* Ocultar completamente todo el contenido del widget excepto el icono */
-.sidebar-language .goog-te-gadget-simple .goog-te-menu-value {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-}
-
-.sidebar-language .goog-te-gadget-simple .goog-te-menu-value span {
-    display: none !important;
-}
-
-.sidebar-language .goog-te-gadget-simple:hover {
-    background-color: #2d2d2d !important;
-}
-
-/* Asegurar que el gadget en el sidebar tenga font-size 0 para ocultar texto */
-.sidebar-language .goog-te-gadget {
-    font-size: 0 !important;
-}
-
-.sidebar-language .skiptranslate {
-    font-size: 0 !important;
-}
+            .sidebar-item {
+                margin: 0;
+            }
+        }

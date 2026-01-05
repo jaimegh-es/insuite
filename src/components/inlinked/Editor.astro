@@ -1,0 +1,391 @@
+---
+import { 
+    Bold, 
+    Italic, 
+    Underline, 
+    Strikethrough, 
+    Code, 
+    Feather, 
+    Scroll, 
+    Type, 
+    Eraser, 
+    Copy, 
+    Trash2
+} from 'lucide-astro';
+---
+<!-- Import Quill Styles -->
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+
+<div class="editor-wrapper">
+  <!-- Ribbon Toolbar -->
+  <div id="toolbar" class="ribbon-toolbar">
+    
+    <!-- Standard Formatting Group -->
+    <div class="ribbon-group">
+        <span class="group-label">Formato</span>
+        <div class="group-content">
+            <button class="ql-bold ribbon-btn" title="Negrita">
+                <div class="icon-box"><Bold class="icon" /></div>
+                <span class="label">Negrita</span>
+            </button>
+            <button class="ql-italic ribbon-btn" title="Cursiva">
+                <div class="icon-box"><Italic class="icon" /></div>
+                <span class="label">Cursiva</span>
+            </button>
+            <button class="ql-underline ribbon-btn" title="Subrayado">
+                <div class="icon-box"><Underline class="icon" /></div>
+                <span class="label">Subr.</span>
+            </button>
+            <button class="ql-strike ribbon-btn" title="Tachado">
+                <div class="icon-box"><Strikethrough class="icon" /></div>
+                <span class="label">Tachado</span>
+            </button>
+            <button class="ql-code ribbon-btn" title="Código">
+                <div class="icon-box"><Code class="icon" /></div>
+                <span class="label">Código</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="separator"></div>
+
+    <!-- Custom Fonts Group -->
+    <div class="ribbon-group">
+        <span class="group-label">Estilos LinkedIn</span>
+        <div class="group-content">
+            <button class="custom-btn ribbon-btn" data-variant="script" title="Script">
+                <div class="icon-box"><Feather class="icon" /></div>
+                <span class="label">Script</span>
+            </button>
+            <button class="custom-btn ribbon-btn" data-variant="gothic" title="Gothic">
+                <div class="icon-box"><Scroll class="icon" /></div>
+                <span class="label">Gothic</span>
+            </button>
+            <button class="custom-btn ribbon-btn" data-variant="doublestruck" title="Double">
+                <div class="icon-box"><Type class="icon" /></div>
+                <span class="label">Double</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="separator"></div>
+
+    <!-- Actions Group -->
+    <div class="ribbon-group">
+        <span class="group-label">Acciones</span>
+        <div class="group-content">
+            <button class="ql-clean ribbon-btn" title="Limpiar">
+                <div class="icon-box"><Eraser class="icon" /></div>
+                <span class="label">Limpiar</span>
+            </button>
+            
+            <button id="clearBtn" class="ribbon-btn danger" title="Borrar Todo">
+                <div class="icon-box"><Trash2 class="icon" /></div>
+                <span class="label">Borrar</span>
+            </button>
+            
+            <button id="copyBtn" class="ribbon-btn primary" title="Copiar a LinkedIn">
+                <div class="icon-box" id="copyIconBox"><Copy class="icon" /></div>
+                <span class="label" id="copyLabel">Copiar</span>
+            </button>
+        </div>
+    </div>
+  </div>
+
+  <div class="editor-content-area">
+      <div id="editor"></div>
+  </div>
+  
+  <div class="status-bar">
+    <span id="charCount">0 caracteres</span>
+  </div>
+</div>
+
+<style>
+  .editor-wrapper {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .ribbon-toolbar {
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: stretch;
+    gap: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    min-height: 90px;
+  }
+  
+  .ribbon-toolbar::-webkit-scrollbar {
+      display: none;
+  }
+
+  .ribbon-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      min-width: max-content;
+  }
+  
+  .group-label {
+      font-size: 0.7rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 2px;
+  }
+  
+  .group-content {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+  }
+
+  .separator {
+      width: 1px;
+      background: #cbd5e1;
+      margin: 0.5rem 0;
+      align-self: stretch;
+  }
+
+  .ribbon-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+      min-width: 60px;
+      color: #475569;
+  }
+
+  .ribbon-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+  }
+  
+  .ribbon-btn.ql-active, .ribbon-btn:active {
+      background: #cbd5e1;
+      color: #0f172a;
+  }
+
+  .ribbon-btn.primary {
+      color: #0f172a;
+      background: #f1f5f9;
+  }
+  .ribbon-btn.primary:hover {
+      background: #e2e8f0;
+  }
+  
+  .ribbon-btn.danger:hover {
+      background: #fee2e2;
+      color: #ef4444;
+  }
+
+  .icon-box {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .icon, .icon-box svg {
+      width: 24px;
+      height: 24px;
+      stroke-width: 2px;
+  }
+
+  .label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-align: center;
+      white-space: nowrap;
+  }
+
+  .editor-content-area {
+      flex: 1;
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      background: white;
+  }
+
+  #editor {
+    flex: 1;
+    font-size: 1.15rem;
+    font-family: 'Ubuntu', 'Segoe UI Symbol', 'Apple Symbols', 'Noto Sans Math', sans-serif; 
+    border: none;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .status-bar {
+    padding: 0.5rem 1rem;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+    font-size: 0.75rem;
+    color: #64748b;
+    text-align: right;
+  }
+  
+  /* Quill Overrides */
+  .ql-toolbar.ql-snow {
+      border: none !important;
+      padding: 0 !important;
+      font-family: inherit !important;
+  }
+  .ql-container.ql-snow {
+      border: none !important;
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 640px) {
+      .ribbon-toolbar {
+          gap: 0.5rem;
+      }
+      .ribbon-btn {
+          min-width: 44px;
+          padding: 0.4rem;
+      }
+      .label {
+          font-size: 0.65rem;
+      }
+  }
+</style>
+
+<script>
+  import Quill from 'quill';
+  import { deltaToUnicode } from '../../utils/deltaToUnicode';
+  import { toUnicodeVariant } from '../../utils/toUnicodeVariant';
+  import { unicodeToAscii } from '../../utils/unicodeToAscii';
+
+  const charCount = document.getElementById('charCount');
+  const copyBtn = document.getElementById('copyBtn');
+  const copyLabel = document.getElementById('copyLabel');
+  const copyIconBox = document.getElementById('copyIconBox');
+  const clearBtn = document.getElementById('clearBtn');
+  const customBtns = document.querySelectorAll('.custom-btn');
+  const cleanFormatBtn = document.querySelector('.ql-clean');
+
+  // Initialize Quill
+  // We need to bind the toolbar manually because our structure is nested differently
+  // Quill expects a flat container for buttons usually, or we pass the ID.
+  // Passing '#toolbar' works, but Quill might try to add its own classes.
+  // We added 'ql-bold' etc to our buttons, so Quill module should pick them up if we pass container.
+  
+  const quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+        toolbar: '#toolbar'
+    },
+    placeholder: 'Escribe aquí tu post para LinkedIn...'
+  });
+
+  function updateCharCount() {
+    const text = quill.getText();
+    if (charCount) {
+      const length = Math.max(0, text.length - 1);
+      charCount.textContent = `${length} caracteres`;
+    }
+  }
+
+  quill.on('text-change', updateCharCount);
+  
+  // Custom Format Handlers
+  customBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+          const variant = (btn as HTMLElement).dataset.variant;
+          if (!variant) return;
+          
+          const range = quill.getSelection();
+          if (range && range.length > 0) {
+              const text = quill.getText(range.index, range.length);
+              const converted = toUnicodeVariant(text, variant);
+              
+              quill.deleteText(range.index, range.length);
+              quill.insertText(range.index, converted);
+              quill.setSelection(range.index, converted.length);
+          }
+      });
+  });
+
+  // Intercept Clean Formatting
+  cleanFormatBtn?.addEventListener('click', () => {
+      setTimeout(() => {
+          const range = quill.getSelection();
+          if (range && range.length > 0) {
+              const text = quill.getText(range.index, range.length);
+              const normalized = unicodeToAscii(text);
+              if (text !== normalized) {
+                  quill.deleteText(range.index, range.length);
+                  quill.insertText(range.index, normalized);
+                  quill.setSelection(range.index, normalized.length);
+              }
+          }
+      }, 0);
+  });
+
+  // Copy Functionality
+  copyBtn?.addEventListener('click', async () => {
+      const delta = quill.getContents();
+      const unicodeText = deltaToUnicode(delta);
+      
+      try {
+        await navigator.clipboard.writeText(unicodeText);
+        
+        // Visual Feedback
+        if (copyLabel) copyLabel.textContent = 'Copiado';
+        if (copyBtn) copyBtn.classList.add('success');
+        
+        setTimeout(() => {
+            if (copyLabel) copyLabel.textContent = 'Copiar';
+            if (copyBtn) copyBtn.classList.remove('success');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy', err);
+        alert('No se pudo copiar el texto.');
+      }
+  });
+
+  clearBtn?.addEventListener('click', () => {
+      if (confirm('¿Borrar todo el texto?')) {
+          quill.setText('');
+      }
+  });
+  
+  // Update Copy Button Success Style dynamically
+  const style = document.createElement('style');
+  style.textContent = `
+    .ribbon-btn.success {
+        color: #16a34a;
+        background: #dcfce7;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Expose for external use if needed
+  window.insertInVisualEditor = (text: string) => {
+       const selection = quill.getSelection(true);
+       quill.insertText(selection.index, text);
+  };
+</script>

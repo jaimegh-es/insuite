@@ -1,6 +1,4 @@
 ---
-import LanguageSelector from './LanguageSelector.astro';
-
 // This is the "frontmatter" where you can write JavaScript
 const currentPath = Astro.url.pathname;
 
@@ -19,8 +17,4 @@ const sidebarItems = [
 </span>
     </a>
   ))}
-
-  <div class="sidebar-language">
-    <LanguageSelector />
-  </div>
  </div>

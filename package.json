@@ -6,12 +6,20 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest"
   },
   "dependencies": {
     "@shikijs/engine-javascript": "^3.7.0",
     "astro": "^5.10.0",
     "gsap": "^3.13.0",
+    "lucide-astro": "^0.556.0",
+    "quill": "^2.0.3",
     "shiki": "^3.7.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@types/quill": "^2.0.14",
+    "vitest": "^4.0.16"
   }
 }

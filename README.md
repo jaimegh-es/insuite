@@ -1,3 +1,7 @@
+> [!WARNING]
+> Este repositorio ha sido movido a [InledGroup/insuite](https://github.com/InledGroup/insuite).  
+> No se va a actualizar más este repositorio, las actualizaciones serán en el de Inled Group.
+
 # InSuite  
 
 La suite de ofimática libre creada por Inled.  
